@@ -47,6 +47,11 @@ public class Guitar{
         this.tuning=tuning;
     }
 
+    //instance methods
+    public void playChord(String chord){
+        
+    }
+
 
 
 }
