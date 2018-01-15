@@ -49,6 +49,7 @@ public class Guitar{
 
     //instance methods
     public void playChord(String chord){
+        Audio.playAudio( "chords\\clean\\"+chord+".wav",volume-10.0f);
         
     }
 
