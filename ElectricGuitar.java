@@ -28,7 +28,7 @@ public class ElectricGuitar extends Guitar{
     public void setEffect(String effect){
         this.effect=effect;
     }
-    public void setAmplifier(){
+    public void setAmplifier(AMP amplifier){
         this.amplifier=amplifier;
     }
 }
