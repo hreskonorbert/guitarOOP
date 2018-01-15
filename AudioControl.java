@@ -3,7 +3,7 @@ import java.net.URL;
 import javax.sound.sampled.*;
 
 
-public class Audio{
+public class AudioControl{
     
     public static Mixer mixer;
     public static Clip clip;

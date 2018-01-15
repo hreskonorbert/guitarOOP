@@ -4,6 +4,7 @@ public class Guitar{
     private String color;
     private int volume;
     private String tuning;
+    private static String[] values = new String[4];
     
 
     public Guitar(String manufacturer,String bodyType,String color,int volume,String tuning){
@@ -29,8 +30,14 @@ public class Guitar{
     public String getTuning(){
         return tuning;
     }
+    public static String getValue(int index){
+        return values[index];
+    }
 
     //setters for attributes
+    public static void setValues(String value,int index){
+        values[index]=value;
+    }
     public void setManufacturer(String manufacturer){
         this.manufacturer=manufacturer;
     }
@@ -49,7 +56,10 @@ public class Guitar{
 
     //instance methods
     public void playChord(String chord){
-        Audio.playAudio( "chords\\clean\\"+chord+".wav",volume-10.0f);
+        if(volume!=0){
+            AudioControl.playAudio( "chords\\clean\\"+chord+".wav",volume-15.0f);
+        }
+        
         
     }
 

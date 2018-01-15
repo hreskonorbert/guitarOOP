@@ -1,12 +1,14 @@
 import java.util.Scanner;
+import java.io.IOException;
 import java.lang.Runtime;
 import javax.sound.sampled.*; 
 
 public class Menu{
-    static String scene="mainmenu";
+   
+    
     static String[] mainMenuOptions = {"Guitar Setup","Chords","Exit"};
     static String[] chords = {"Am","B","C","Cm","Back"};
-    static String[] guitarSetup = {"Volume","Tuning","Distortion","Effect","Back"};
+    static String[] guitarSetup = {"Volume","Tuning","Distortion","Effect"};
     
     
     //Main menu
@@ -39,16 +41,19 @@ public class Menu{
 
     //Guitar setup menu
     public static void guitarSetupMenu(Guitar guitar){
+        clearScreen();
         Scanner reader = new Scanner(System.in);
         for(int i=0;i<guitarSetup.length;i++){
-            System.out.println(i+1+". "+guitarSetup[i]);
+            System.out.println(i+1+". "+guitarSetup[i]+" ["+Guitar.getValue(i)+"]");
         }
-        System.out.println("Please enter a number");
+        System.out.println("5. Back");
+        System.out.print("Please enter a number: ");
         int n=reader.nextInt();
         switch(n){
             case 1:
-                System.out.println("Set the guitar's volume(1-10)");
+                System.out.print("Set the guitar's volume(0-10): ");
                 int vol=reader.nextInt();
+                Guitar.setValues(Integer.toString(vol), 0);
                 guitar.setVolume(vol);
                 guitarSetupMenu(guitar);
             break;
@@ -91,9 +96,8 @@ public class Menu{
     
     //Console clearing method
     public final static void clearScreen(){
-        
-     for(int i=0;i<300;i++){
-         System.out.print("\b");
-     }
+        for(int i=0;i<50;i++){
+            System.out.println();
+        }
     }
 }

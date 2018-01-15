@@ -1,13 +1,18 @@
 public class ElectricGuitar extends Guitar{
     private boolean isDistorted;
     private String effect;
-    AMP amplifier;
+    
+    
 
-    public ElectricGuitar(String manufacturer,String bodyType,String color,int volume,String tuning,boolean isDistorted,String effect,AMP amplifier){
+    public ElectricGuitar(String manufacturer,String bodyType,String color,int volume,String tuning,boolean isDistorted,String effect){
         super(manufacturer, bodyType, color, volume, tuning);
         this.isDistorted=isDistorted;
         this.effect=effect;
-        this.amplifier=amplifier;
+        Guitar.setValues(Integer.toString(volume), 0);
+        Guitar.setValues(tuning, 1);
+        Guitar.setValues(Boolean.toString(isDistorted), 2);
+        Guitar.setValues(effect, 3);
+        
     }
 
     //getters for attributes
@@ -17,9 +22,7 @@ public class ElectricGuitar extends Guitar{
     public String getEffect(){
         return effect;
     }
-    public AMP getAmplifier(){
-        return amplifier;
-    }
+    
 
     //setters for attributes
     public void setIsDistorted(boolean isDistorted){
@@ -28,7 +31,5 @@ public class ElectricGuitar extends Guitar{
     public void setEffect(String effect){
         this.effect=effect;
     }
-    public void setAmplifier(AMP amplifier){
-        this.amplifier=amplifier;
-    }
+    
 }
