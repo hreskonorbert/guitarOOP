@@ -7,7 +7,7 @@ public class Menu{
    
     
     static String[] mainMenuOptions = {"Guitar Setup","Chords","Exit"};
-    static String[] chords = {"Am","B","C","Cm","Back"};
+    static String[] chords = {"A","Am","B","Bm","C","Cm","D","Dm","E","Em","F","Fm","G","Gm"};
     static String[] guitarSetup = {"Volume","Tuning","Distortion","Effect"};
     
     
@@ -71,23 +71,27 @@ public class Menu{
         for(int i=0;i<chords.length;i++){
             System.out.println(i+1+". "+chords[i]);
         }
-       
+        System.out.println("0. Back");
 
         System.out.print("Choose a chord to play: ");
         int n=chord.nextInt();
+        if (n!=0){
+            guitar.playChord(chords[n-1]);
+        } else{
+            mainmenu(guitar);
+        }
         
-        guitar.playChord(chords[n-1]);
         
-        while(n!=6){
+        while(n!=0){
             clearScreen();
             for(int i=0;i<chords.length;i++){
                 System.out.println(i+1+". "+chords[i]);
             }
-   
+            System.out.println("0. Back");
 
             System.out.print("Choose a chord to play: ");
             n=chord.nextInt();
-            if(n==5) mainmenu(guitar);
+            if(n==0) mainmenu(guitar);
             guitar.playChord(chords[n-1]);
         } 
         

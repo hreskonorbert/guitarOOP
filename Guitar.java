@@ -57,7 +57,7 @@ public class Guitar{
     //instance methods
     public void playChord(String chord){
         if(volume!=0){
-            AudioControl.playAudio( "chords\\clean\\"+chord+".wav",volume-15.0f);
+            AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-volume)*(-4.0f));
         }
         
         
