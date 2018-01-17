@@ -8,6 +8,7 @@ public class Menu{
     
     static String[] mainMenuOptions = {"Guitar Setup","Chords","Exit"};
     static String[] chords = {"A","Am","B","Bm","C","Cm","D","Dm","E","Em","F","Fm","G","Gm"};
+    static String[] distortedChords = {"A","D","E","G"};
     static String[] guitarSetup = {"Volume","Tuning","Distortion","Effect"};
     
     
@@ -44,9 +45,9 @@ public class Menu{
         clearScreen();
         Scanner reader = new Scanner(System.in);
         for(int i=0;i<guitarSetup.length;i++){
-            System.out.println(i+1+". "+guitarSetup[i]+" ["+Guitar.getValue(i)+"]");
+            System.out.println(i+1+". "+guitarSetup[i]+" ["+Guitar.getValue(i)+"]"  );
         }
-        System.out.println("5. Back");
+        System.out.println("0. Back");
         System.out.print("Please enter a number: ");
         int n=reader.nextInt();
         switch(n){
@@ -57,7 +58,11 @@ public class Menu{
                 guitar.setVolume(vol);
                 guitarSetupMenu(guitar);
             break;
-            case 5:
+            case 3:
+                Guitar.setValues(Boolean.toString(!Boolean.valueOf(Guitar.getValue(2))), 2);
+                Guitar.isDistorted=!(Guitar.isDistorted);
+                guitarSetupMenu(guitar);
+            case 0:
                 mainmenu(guitar);
             break;
         }
@@ -68,32 +73,87 @@ public class Menu{
     public static void chordsMenu(Guitar guitar){
         clearScreen();
         Scanner chord = new Scanner(System.in);
-        for(int i=0;i<chords.length;i++){
-            System.out.println(i+1+". "+chords[i]);
-        }
-        System.out.println("0. Back");
-
-        System.out.print("Choose a chord to play: ");
-        int n=chord.nextInt();
-        if (n!=0){
-            guitar.playChord(chords[n-1]);
-        } else{
-            mainmenu(guitar);
-        }
-        
-        
-        while(n!=0){
-            clearScreen();
+        if (Guitar.isDistorted==false) {
             for(int i=0;i<chords.length;i++){
-                System.out.println(i+1+". "+chords[i]);
+                if((i+1)%5==0){
+                    System.out.print("["+(i+1)+". "+chords[i]+"]  ");
+                    System.out.println();
+                    System.out.println();
+                }else{
+                    System.out.print("["+(i+1)+". "+chords[i]+"]  ");
+                }
             }
-            System.out.println("0. Back");
+            System.out.println("\n\n0. Back");
 
-            System.out.print("Choose a chord to play: ");
-            n=chord.nextInt();
-            if(n==0) mainmenu(guitar);
-            guitar.playChord(chords[n-1]);
-        } 
+            System.out.print("\nChoose a chord to play: ");
+            int n=chord.nextInt();
+            if (n!=0){
+                guitar.playChord(chords[n-1]);
+            } else{
+                mainmenu(guitar);
+            }
+            
+            
+            while(n!=0){
+                clearScreen();
+                for(int i=0;i<chords.length;i++){
+                    if((i+1)%5==0){
+                        System.out.print("["+(i+1)+". "+chords[i]+"]  ");
+                        System.out.println();
+                        System.out.println();
+
+                    }else{
+                        System.out.print("["+(i+1)+". "+chords[i]+"]  ");
+                    }
+                }
+                System.out.println("\n\n0. Back");
+
+                System.out.print("\nChoose a chord to play: ");
+                n=chord.nextInt();
+                if(n==0) mainmenu(guitar);
+                guitar.playChord(chords[n-1]);
+            }
+        }else{
+            for(int i=0;i<distortedChords.length;i++){
+                if((i+1)%5==0){
+                    System.out.print("["+(i+1)+". "+distortedChords[i]+"]  ");
+                    System.out.println();
+                    System.out.println();
+                }else{
+                    System.out.print("["+(i+1)+". "+distortedChords[i]+"]  ");
+                }
+            }
+            System.out.println("\n\n0. Back");
+
+            System.out.print("\nChoose a chord to play: ");
+            int n=chord.nextInt();
+            if (n!=0){
+                guitar.playChord(distortedChords[n-1]);
+            } else{
+                mainmenu(guitar);
+            }
+            
+            
+            while(n!=0){
+                clearScreen();
+                for(int i=0;i<distortedChords.length;i++){
+                    if((i+1)%5==0){
+                        System.out.print("["+(i+1)+". "+distortedChords[i]+"]  ");
+                        System.out.println();
+                        System.out.println();
+
+                    }else{
+                        System.out.print("["+(i+1)+". "+distortedChords[i]+"]  ");
+                    }
+                }
+                System.out.println("\n\n0. Back");
+
+                System.out.print("\nChoose a chord to play: ");
+                n=chord.nextInt();
+                if(n==0) mainmenu(guitar);
+                guitar.playChord(distortedChords[n-1]);
+            }
+        }
         
     }
     

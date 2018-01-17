@@ -1,6 +1,5 @@
 public class ElectricGuitar extends Guitar{
-    private boolean isDistorted;
-    private String effect;
+
     
     
 
@@ -26,10 +25,11 @@ public class ElectricGuitar extends Guitar{
 
     //setters for attributes
     public void setIsDistorted(boolean isDistorted){
-        this.isDistorted=isDistorted;
+        Guitar.isDistorted=isDistorted;
     }
     public void setEffect(String effect){
-        this.effect=effect;
+        Guitar.effect=effect;
     }
+    
     
 }

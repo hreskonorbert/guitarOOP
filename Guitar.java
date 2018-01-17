@@ -4,6 +4,8 @@ public class Guitar{
     private String color;
     private int volume;
     private String tuning;
+    static boolean isDistorted;
+    static String effect;
     private static String[] values = new String[4];
     
 
@@ -33,6 +35,13 @@ public class Guitar{
     public static String getValue(int index){
         return values[index];
     }
+    public boolean getIsDistorted(){
+        return isDistorted;
+    }
+    public String getEffect(){
+        return effect;
+    }
+    
 
     //setters for attributes
     public static void setValues(String value,int index){
@@ -53,11 +62,22 @@ public class Guitar{
     public void setTuning(String tunin){
         this.tuning=tuning;
     }
+    public void setIsDistorted(boolean value){
+        Guitar.isDistorted=value;
+    }
+    public void setEffect(String effect){
+        Guitar.effect=effect;
+    }
+    
 
     //instance methods
     public void playChord(String chord){
         if(volume!=0){
-            AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-volume)*(-4.0f));
+            if(isDistorted==false){
+                AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-volume)*(-3.0f));
+            }else{
+                AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",(10-volume)*(-3.0f));
+            }
         }
         
         
