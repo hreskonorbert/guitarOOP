@@ -34,6 +34,10 @@ public class Menu{
             case 3:
                 System.exit(0);
             break;
+            default:
+            System.out.println("\n invalid input");
+            try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
+            mainmenu(guitar);
         }
 
         
@@ -54,17 +58,37 @@ public class Menu{
             case 1:
                 System.out.print("Set the guitar's volume(0-10): ");
                 int vol=reader.nextInt();
+                if(Integer.toString(vol).length()<1 || vol < 0 || vol > 10 ){
+                    System.out.println("\n Invalid input");
+                    try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
+                    guitarSetupMenu(guitar);
+                }
                 Guitar.setValues(Integer.toString(vol), 0);
                 guitar.setVolume(vol);
+                guitarSetupMenu(guitar);
+            break;
+            case 2:
+                System.out.println("\n Not available yet");
+                try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
                 guitarSetupMenu(guitar);
             break;
             case 3:
                 Guitar.setValues(Boolean.toString(!Boolean.valueOf(Guitar.getValue(2))), 2);
                 Guitar.isDistorted=!(Guitar.isDistorted);
                 guitarSetupMenu(guitar);
+            break;
+            case 4:
+                System.out.println("\n Not available yet");
+                try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
+                guitarSetupMenu(guitar);
+            break;
             case 0:
                 mainmenu(guitar);
             break;
+            default:
+            System.out.println("\n invalid input");
+            try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
+            guitarSetupMenu(guitar);
         }
     }
     
@@ -87,7 +111,12 @@ public class Menu{
 
             System.out.print("\nChoose a chord to play: ");
             int n=chord.nextInt();
-            if (n!=0){
+            if (n>chords.length | n<0){
+                System.out.println("\n invalid input");
+                try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
+                chordsMenu(guitar);
+            }
+            else if (n!=0){
                 guitar.playChord(chords[n-1]);
             } else{
                 mainmenu(guitar);
