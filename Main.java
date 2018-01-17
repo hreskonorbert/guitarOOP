@@ -1,14 +1,32 @@
 import java.io.*;
+import java.util.Scanner;
+
 import javax.sound.sampled.*;
 
 public class Main{
     
     
     public static void main(String[] args){
-     
-       
-      
-        Guitar fender = new ElectricGuitar("fender", "stratocaster", "red", 10, "EADGbe",false,"none");
+        Scanner inputsForGuitar = new Scanner(System.in);
+        boolean dist=false;
+        System.out.print("Manufacturer: ");
+        String manufacturer=inputsForGuitar.next();
+        System.out.print("\nBody type: ");
+        String bodyType=inputsForGuitar.next();
+        System.out.print("\nColor: ");
+        String color=inputsForGuitar.next();
+        System.out.print("\nDefault volume(0-10): ");
+        int volume=inputsForGuitar.nextInt();
+        System.out.print("\nTuning(EADGbe/DADGbe): ");
+        String tuning=inputsForGuitar.next();
+        System.out.print("\nDistorted(y/n): ");
+        String isDist = inputsForGuitar.next();
+        if(isDist.equals("y")) dist=true;
+        System.out.print("\nEffect(none/fuzz/reverb): ");
+        String effect = inputsForGuitar.next();
+        
+        
+        Guitar fender = new ElectricGuitar(manufacturer, bodyType, color, volume, tuning,dist,effect);
         Menu.mainmenu(fender);
     }
 }
