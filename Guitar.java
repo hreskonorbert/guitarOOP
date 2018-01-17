@@ -74,9 +74,25 @@ public class Guitar{
     public void playChord(String chord){
         if(volume!=0){
             if(isDistorted==false){
-                AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-volume)*(-3.0f));
+                if(effect.equals("reverb")){
+                    AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-volume)*(-3.0f));
+                    try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
+                    AudioControl.playAudio( "chords\\clean\\"+chord+".aif",((10-volume)*(-3.0f)-10.0f));
+                    try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
+                    AudioControl.playAudio( "chords\\clean\\"+chord+".aif",((10-volume)*(-3.0f)-15.0f));
+                }else{
+                    AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-volume)*(-3.0f));
+                }
             }else{
-                AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",(10-volume)*(-3.0f));
+                if(effect.equals("reverb")){
+                    AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",(10-volume)*(-3.0f));
+                    try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
+                    AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",((10-volume)*(-3.0f)-10.0f));
+                    try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
+                    AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",((10-volume)*(-3.0f)-15.0f));
+                }else{
+                    AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",(10-volume)*(-3.0f));
+                }
             }
         }
         

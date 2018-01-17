@@ -78,8 +78,10 @@ public class Menu{
                 guitarSetupMenu(guitar);
             break;
             case 4:
-                System.out.println("\n Not available yet");
-                try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
+                System.out.print("\nChoose an effect(none/fuzz/reverb): ");
+                String ef=reader.next();
+                Guitar.setValues(ef, 3);
+                guitar.setEffect(ef);
                 guitarSetupMenu(guitar);
             break;
             case 0:
