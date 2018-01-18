@@ -6,15 +6,21 @@ import javax.sound.sampled.*;
 public class Menu{
    
     
-    static String[] mainMenuOptions = {"Guitar Setup","Chords","Exit"};
+    static String[] mainMenuOptions = {"Guitar Setup","Chords","Songs","Exit"};
     static String[] chords = {"A","Am","B","Bm","C","Cm","D","Dm","E","Em","F","Fm","G","Gm"};
     static String[] distortedChords = {"A","D","E","G"};
     static String[] guitarSetup = {"Volume","Tuning","Distortion","Effect","AMP is On"};
+    static String[] songs ={"A borton ablakaba"};
     
     
     //Main menu
     public static void mainmenu(ElectricGuitar guitar,AMP amp){
         clearScreen();
+
+        if(amp.isOn==false){
+            System.out.println("AMP is OFF. Go to guitar setup to turn it on\n");
+        }
+
         for(int i=0;i<mainMenuOptions.length;i++){
             System.out.println(i+1+" "+mainMenuOptions[i]);
         }
@@ -31,9 +37,11 @@ public class Menu{
             case 2:
                 chordsMenu(guitar,amp);
             break;
-            case 3:
+            case 4:
                 System.exit(0);
             break;
+            case 3:
+                songsMenu(amp);
             default:
             System.out.println("\n invalid input");
             try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
@@ -43,6 +51,21 @@ public class Menu{
         
     }
 
+
+    public static void songsMenu(AMP amp){
+        Scanner song = new Scanner(System.in);
+        for(int i=0;i<songs.length;i++){
+            System.out.println(i+1+". "+songs[i]);
+        }
+        System.out.print("\nChoose a song to play: ");
+        int num=song.nextInt();
+        switch(num){
+            case 1:
+                Songs.playEgyszeruDal(amp);
+            break;
+        }
+
+    }
 
     //Guitar setup menu
     public static void guitarSetupMenu(ElectricGuitar guitar,AMP amp){

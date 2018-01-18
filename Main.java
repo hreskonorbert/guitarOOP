@@ -10,7 +10,7 @@ public class Main{
         Scanner inputsForGuitar = new Scanner(System.in);
         boolean dist=false;
         boolean electric=false;
-        AMP amp = new AMP(10,true);
+        AMP amp = new AMP(10,false);
         
         System.out.print("Manufacturer: ");
         String manufacturer=inputsForGuitar.next();
@@ -25,7 +25,7 @@ public class Main{
         System.out.print("\nDistorted(y/n): ");
         String isDist = inputsForGuitar.next();
         if(isDist.equals("y")) dist=true;
-        System.out.print("\nEffect(none/fuzz/reverb): ");
+        System.out.print("\nEffect(none/reverb): ");
         String effect = inputsForGuitar.next();
       
         ElectricGuitar guitar = new ElectricGuitar(manufacturer, bodyType, color,tuning,amp,dist,effect);
