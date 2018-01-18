@@ -9,11 +9,11 @@ public class Menu{
     static String[] mainMenuOptions = {"Guitar Setup","Chords","Exit"};
     static String[] chords = {"A","Am","B","Bm","C","Cm","D","Dm","E","Em","F","Fm","G","Gm"};
     static String[] distortedChords = {"A","D","E","G"};
-    static String[] guitarSetup = {"Volume","Tuning","Distortion","Effect"};
+    static String[] guitarSetup = {"Volume","Tuning","Distortion","Effect","AMP is On"};
     
     
     //Main menu
-    public static void mainmenu(Guitar guitar){
+    public static void mainmenu(ElectricGuitar guitar,AMP amp){
         clearScreen();
         for(int i=0;i<mainMenuOptions.length;i++){
             System.out.println(i+1+" "+mainMenuOptions[i]);
@@ -25,11 +25,11 @@ public class Menu{
         
         switch(n){
             case 1:
-                guitarSetupMenu(guitar);
+                guitarSetupMenu(guitar,amp);
             break;
             
             case 2:
-                chordsMenu(guitar);
+                chordsMenu(guitar,amp);
             break;
             case 3:
                 System.exit(0);
@@ -37,7 +37,7 @@ public class Menu{
             default:
             System.out.println("\n invalid input");
             try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
-            mainmenu(guitar);
+            mainmenu(guitar,amp);
         }
 
         
@@ -45,7 +45,7 @@ public class Menu{
 
 
     //Guitar setup menu
-    public static void guitarSetupMenu(Guitar guitar){
+    public static void guitarSetupMenu(ElectricGuitar guitar,AMP amp){
         clearScreen();
         Scanner reader = new Scanner(System.in);
         for(int i=0;i<guitarSetup.length;i++){
@@ -61,45 +61,49 @@ public class Menu{
                 if(Integer.toString(vol).length()<1 || vol < 0 || vol > 10 ){
                     System.out.println("\n Invalid input");
                     try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
-                    guitarSetupMenu(guitar);
+                    guitarSetupMenu(guitar,amp);
                 }
                 Guitar.setValues(Integer.toString(vol), 0);
-                guitar.setVolume(vol);
-                guitarSetupMenu(guitar);
+                amp.setVolume(vol);
+                guitarSetupMenu(guitar,amp);
             break;
             case 2:
                 System.out.println("\n Not available yet");
                 try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
-                guitarSetupMenu(guitar);
+                guitarSetupMenu(guitar,amp);
             break;
             case 3:
                 Guitar.setValues(Boolean.toString(!Boolean.valueOf(Guitar.getValue(2))), 2);
-                Guitar.isDistorted=!(Guitar.isDistorted);
-                guitarSetupMenu(guitar);
+                guitar.isDistorted=!(guitar.isDistorted);
+                guitarSetupMenu(guitar,amp);
             break;
             case 4:
                 System.out.print("\nChoose an effect(none/fuzz/reverb): ");
                 String ef=reader.next();
                 Guitar.setValues(ef, 3);
                 guitar.setEffect(ef);
-                guitarSetupMenu(guitar);
+                guitarSetupMenu(guitar,amp);
             break;
+            case 5:
+                Guitar.setValues(Boolean.toString(!(amp.getIsOn())), 4);
+                amp.setIsOn(!(amp.getIsOn()));
+                guitarSetupMenu(guitar,amp);
             case 0:
-                mainmenu(guitar);
+                mainmenu(guitar,amp);
             break;
             default:
             System.out.println("\n invalid input");
             try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
-            guitarSetupMenu(guitar);
+            guitarSetupMenu(guitar,amp);
         }
     }
     
     
     //Chords menu
-    public static void chordsMenu(Guitar guitar){
+    public static void chordsMenu(ElectricGuitar guitar, AMP amp){
         clearScreen();
         Scanner chord = new Scanner(System.in);
-        if (Guitar.isDistorted==false) {
+        if (guitar.isDistorted==false) {
             for(int i=0;i<chords.length;i++){
                 if((i+1)%5==0){
                     System.out.print("["+(i+1)+". "+chords[i]+"]  ");
@@ -116,12 +120,12 @@ public class Menu{
             if (n>chords.length | n<0){
                 System.out.println("\n invalid input");
                 try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
-                chordsMenu(guitar);
+                chordsMenu(guitar,amp);
             }
             else if (n!=0){
                 guitar.playChord(chords[n-1]);
             } else{
-                mainmenu(guitar);
+                mainmenu(guitar,amp);
             }
             
             
@@ -141,7 +145,7 @@ public class Menu{
 
                 System.out.print("\nChoose a chord to play: ");
                 n=chord.nextInt();
-                if(n==0) mainmenu(guitar);
+                if(n==0) mainmenu(guitar,amp);
                 guitar.playChord(chords[n-1]);
             }
         }else{
@@ -161,7 +165,7 @@ public class Menu{
             if (n!=0){
                 guitar.playChord(distortedChords[n-1]);
             } else{
-                mainmenu(guitar);
+                mainmenu(guitar,amp);
             }
             
             
@@ -181,7 +185,7 @@ public class Menu{
 
                 System.out.print("\nChoose a chord to play: ");
                 n=chord.nextInt();
-                if(n==0) mainmenu(guitar);
+                if(n==0) mainmenu(guitar,amp);
                 guitar.playChord(distortedChords[n-1]);
             }
         }

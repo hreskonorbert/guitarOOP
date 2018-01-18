@@ -9,6 +9,9 @@ public class Main{
     public static void main(String[] args){
         Scanner inputsForGuitar = new Scanner(System.in);
         boolean dist=false;
+        boolean electric=false;
+        AMP amp = new AMP(10,true);
+        
         System.out.print("Manufacturer: ");
         String manufacturer=inputsForGuitar.next();
         System.out.print("\nBody type: ");
@@ -24,9 +27,10 @@ public class Main{
         if(isDist.equals("y")) dist=true;
         System.out.print("\nEffect(none/fuzz/reverb): ");
         String effect = inputsForGuitar.next();
+      
+        ElectricGuitar guitar = new ElectricGuitar(manufacturer, bodyType, color,tuning,amp,dist,effect);
+      
         
-        
-        Guitar fender = new ElectricGuitar(manufacturer, bodyType, color, volume, tuning,dist,effect);
-        Menu.mainmenu(fender);
+        Menu.mainmenu(guitar,amp);
     }
 }
