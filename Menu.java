@@ -124,8 +124,14 @@ public class Menu{
                 guitarSetupMenu(guitar,amp);
             break;
             case 4:
-                System.out.print("\nChoose an effect(none/fuzz/reverb): ");
+                System.out.print("\nChoose an effect(none/reverb): ");
                 String ef=reader.next();
+                while((ef.equals("none") || ef.equals("reverb"))==false){
+                    System.out.println("Invalid effect");
+                    System.out.print("\nChoose an effect(none/reverb): ");
+                    ef=reader.next();
+                    
+                }
                 Guitar.setValues(ef, 3);
                 guitar.setEffect(ef);
                 guitarSetupMenu(guitar,amp);
