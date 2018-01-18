@@ -35,33 +35,7 @@ public class ElectricGuitar extends Guitar{
         this.effect=effect;
     }
 
-    public void playChord(String chord){
-        if(amp.getVolume()!=0 && amp.getIsOn()==true){
-            if(isDistorted==false){
-                if(effect.equals("reverb")){
-                    AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-amp.getVolume())*(-3.0f));
-                    try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
-                    AudioControl.playAudio( "chords\\clean\\"+chord+".aif",((10-amp.getVolume())*(-3.0f)-10.0f));
-                    try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
-                    AudioControl.playAudio( "chords\\clean\\"+chord+".aif",((10-amp.getVolume())*(-3.0f)-15.0f));
-                }else{
-                    AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-amp.getVolume())*(-3.0f));
-                }
-            }else{
-                if(effect.equals("reverb")){
-                    AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",(10-amp.getVolume())*(-3.0f));
-                    try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
-                    AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",((10-amp.getVolume())*(-3.0f)-10.0f));
-                    try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
-                    AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",((10-amp.getVolume())*(-3.0f)-15.0f));
-                }else{
-                    AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",(10-amp.getVolume())*(-3.0f));
-                }
-            }
-        }
-        
-        
-    }
+    
     
     
 }

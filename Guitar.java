@@ -50,6 +50,41 @@ public class Guitar{
         this.tuning=tuning;
     }
 
+    public void playChord(String chord, boolean isElectric, AMP amp,Guitar paramGuitar){
+        if(isElectric==true){
+            ElectricGuitar  eGuitar = (ElectricGuitar)paramGuitar;
+            if(amp.getVolume()!=0 && amp.getIsOn()==true){
+                if(eGuitar.isDistorted==false){
+                    if(eGuitar.effect.equals("reverb")){
+                        AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-amp.getVolume())*(-3.0f));
+                        try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
+                        AudioControl.playAudio( "chords\\clean\\"+chord+".aif",((10-amp.getVolume())*(-3.0f)-10.0f));
+                        try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
+                        AudioControl.playAudio( "chords\\clean\\"+chord+".aif",((10-amp.getVolume())*(-3.0f)-15.0f));
+                    }else{
+                        AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-amp.getVolume())*(-3.0f));
+                    }
+                }else{
+                    if(eGuitar.effect.equals("reverb")){
+                        AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",(10-amp.getVolume())*(-3.0f));
+                        try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
+                        AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",((10-amp.getVolume())*(-3.0f)-10.0f));
+                        try{Thread.sleep(500);}catch(Exception e){e.printStackTrace();}
+                        AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",((10-amp.getVolume())*(-3.0f)-15.0f));
+                    }else{
+                        AudioControl.playAudio( "chords\\distorted\\"+chord+".aif",(10-amp.getVolume())*(-3.0f));
+                    }
+                }
+            }
+        }else{
+
+            AudioControl.playAudio( "chords\\clean\\"+chord+".aif",(10-amp.getVolume())*(-3.0f));
+        }
+        
+        
+        
+    }
+
 
    
     
