@@ -8,7 +8,7 @@ public class Menu{
     
     static String[] mainMenuOptions = {"Guitar Setup","Chords","Songs","Exit"};
     static String[] chords = {"A","Am","B","Bm","C","Cm","D","Dm","E","Em","F","Fm","G","Gm"};
-    static String[] distortedChords = {"A","D","E","G"};
+    static String[] distortedChords = {"A","Am","B","Bm","C","Cm","D","Dm","E","Em","F","Fm","G","Gm"};
     static String[] guitarSetup = {"Volume","Tuning","Distortion","Effect","AMP is On"};
     static String[] songs ={"A borton ablakaba"};
     
