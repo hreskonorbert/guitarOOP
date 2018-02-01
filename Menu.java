@@ -6,7 +6,7 @@ import javax.sound.sampled.*;
 public class Menu{
    
     
-    static String[] mainMenuOptions = {"Guitar Setup","Chords","Songs","Exit"};
+    static String[] mainMenuOptions = {"Guitar Setup","Chords","Exit"};
     static String[] chords = {"A","Am","B","Bm","C","Cm","D","Dm","E","Em","F","Fm","G","Gm"};
     static String[] distortedChords = {"A","Am","B","Bm","C","Cm","D","Dm","E","Em","F","Fm","G","Gm"};
     static String[] guitarSetup = {"Volume","Tuning","Distortion","Effect","AMP is On"};
@@ -39,11 +39,9 @@ public class Menu{
                 case 2:
                     chordsMenu(eGuitar,amp);
                 break;
-                case 4:
+                case 3:
                     System.exit(0);
                 break;
-                case 3:
-                    songsMenu(amp);
                 default:
                 System.out.println("\n invalid input");
                 try{Thread.sleep(2000);}catch(Exception e){e.printStackTrace();}
@@ -53,8 +51,7 @@ public class Menu{
             AcousticGuitar aGuitar = (AcousticGuitar)guitar;
             Scanner acousticMenu = new Scanner(System.in);
             System.out.println("1. Chords");
-            System.out.println("2. Songs");
-            System.out.println("3. exit");
+            System.out.println("2. exit");
             System.out.print("Choose an option: ");
             int l = acousticMenu.nextInt();
             switch(l){
@@ -62,9 +59,6 @@ public class Menu{
                     chordsMenu(aGuitar, amp);
                 break;
                 case 2:
-                    songsMenu(amp);
-                break;
-                case 3:
                     System.exit(0);
                 break;
             }
